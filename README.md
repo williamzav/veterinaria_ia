@@ -81,3 +81,38 @@ resources/views/
 │   └── home.blade.php
 └── admin/
 └── dashboard.blade.php
+---
+
+## 👥 Sistema de Roles
+
+| Rol | Valor en BD | Acceso tras login |
+|---|---|---|
+| Administrador | `administrador` | `/admin/home` — Panel de administración |
+| Veterinario | `veterinario` | `/home` — Dashboard veterinario |
+
+---
+
+## 🔑 Usuarios de Prueba
+
+| Rol | Email | Contraseña |
+|---|---|---|
+| Administrador | `admin@gmail.com` | `admin` |
+| Veterinario | `veterinario@gmail.com` | `veterinario` |
+
+---
+
+## 🗺 Rutas Disponibles
+
+| Método | URI | Acceso |
+|---|---|---|
+| `GET` | `/` | Login |
+| `POST` | `/logear` | Procesar login |
+| `GET` | `/home` | Dashboard veterinario |
+| `GET` | `/admin/home` | Dashboard administrador |
+| `GET` | `/logout` | Cerrar sesión |
+
+---
+
+## 📄 Licencia
+
+Proyecto académico — Ingeniería de Software.
