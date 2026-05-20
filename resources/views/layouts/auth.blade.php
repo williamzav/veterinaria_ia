@@ -26,7 +26,7 @@
 </head>
 
 {{-- Fondo degradado azul primario igual que la plantilla SB Admin 2 --}}
-<body class="bg-gradient-primary">
+<body class="bg-gradient-primary d-flex align-items-start" style="min-height:100vh; padding-top:5vh;">
 
     @yield('contenido')
 
