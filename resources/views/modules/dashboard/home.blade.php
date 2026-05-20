@@ -53,7 +53,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-2">Pacientes</div>
-                        <div class="stat-number text-gray-800">—</div>
+                        <div class="stat-number text-gray-800">{{ $totalMascotas }}</div>
                         <small class="text-muted">Mascotas registradas</small>
                     </div>
                     <div class="stat-icon bg-primary" style="opacity:0.15;position:absolute;right:1.5rem;"></div>
@@ -71,7 +71,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <div class="text-xs font-weight-bold text-success text-uppercase mb-2">Consultas hoy</div>
-                        <div class="stat-number text-gray-800">—</div>
+                        <div class="stat-number text-gray-800">{{ $consultasHoy }}</div>
                         <small class="text-muted">Atenciones del día</small>
                     </div>
                     <div class="stat-icon" style="background:rgba(28,200,138,0.12);">
@@ -88,7 +88,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <div class="text-xs font-weight-bold text-info text-uppercase mb-2">Propietarios</div>
-                        <div class="stat-number text-gray-800">—</div>
+                        <div class="stat-number text-gray-800">{{ $totalDuenos }}</div>
                         <small class="text-muted">Dueños registrados</small>
                     </div>
                     <div class="stat-icon" style="background:rgba(54,185,204,0.12);">
@@ -105,7 +105,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-2">Citas pendientes</div>
-                        <div class="stat-number text-gray-800">—</div>
+                        <div class="stat-number text-gray-800">0</div>
                         <small class="text-muted">Por atender</small>
                     </div>
                     <div class="stat-icon" style="background:rgba(246,194,62,0.12);">
@@ -136,19 +136,19 @@
                         </a>
                     </div>
                     <div class="col-6 mb-3">
-                        <a href="#" class="btn btn-outline-success btn-block" style="border-radius:12px;padding:1rem;">
+                        <a href="{{ route('pacientes.index') }}" class="btn btn-outline-success btn-block" style="border-radius:12px;padding:1rem;">
                             <i class="fas fa-dog fa-lg d-block mb-1"></i>
                             <small>Pacientes</small>
                         </a>
                     </div>
                     <div class="col-6 mb-3">
-                        <a href="#" class="btn btn-outline-info btn-block" style="border-radius:12px;padding:1rem;">
+                        <a href="{{ route('consultas.create') }}" class="btn btn-outline-info btn-block" style="border-radius:12px;padding:1rem;">
                             <i class="fas fa-stethoscope fa-lg d-block mb-1"></i>
                             <small>Nueva Consulta</small>
                         </a>
                     </div>
                     <div class="col-6 mb-3">
-                        <a href="#" class="btn btn-outline-warning btn-block" style="border-radius:12px;padding:1rem;">
+                        <a href="{{ route('citas.create') }}" class="btn btn-outline-warning btn-block" style="border-radius:12px;padding:1rem;">
                             <i class="fas fa-calendar-plus fa-lg d-block mb-1"></i>
                             <small>Nueva Cita</small>
                         </a>
@@ -165,11 +165,26 @@
                     <i class="fas fa-clock mr-2"></i>Actividad Reciente
                 </h6>
             </div>
-            <div class="card-body">
+            <div class="card-body p-0">
+                @forelse ($actividadReciente as $consulta)
+                <div class="d-flex align-items-center px-3 py-2 border-bottom">
+                    <div class="mr-3" style="width:36px;height:36px;border-radius:50%;background:rgba(78,115,223,0.12);display:flex;align-items:center;justify-content:center;">
+                        <i class="fas fa-paw text-primary" style="font-size:.8rem;"></i>
+                    </div>
+                    <div class="flex-grow-1">
+                        <div class="font-weight-bold text-gray-800 small">{{ $consulta->mascota->nombre ?? '—' }}</div>
+                        <div class="text-muted" style="font-size:.75rem;">
+                            {{ $consulta->mascota->dueno->nombre_completo ?? 'Sin dueño' }} &bull;
+                            {{ \Carbon\Carbon::parse($consulta->fecha_consulta)->format('d/m/Y H:i') }}
+                        </div>
+                    </div>
+                </div>
+                @empty
                 <div class="text-center py-4 text-muted">
                     <i class="fas fa-clipboard-list fa-3x mb-3" style="opacity:0.2;"></i>
                     <p class="mb-0 small">No hay actividad reciente registrada.</p>
                 </div>
+                @endforelse
             </div>
         </div>
     </div>

@@ -141,11 +141,11 @@
             </div>
             <div class="card-body">
                 <p class="text-gray-600 mb-3 small">Consulta estadísticas globales, actividad de veterinarios y métricas del sistema.</p>
-                <a href="#" class="btn btn-info btn-sm mr-2" style="border-radius:50px;">
+                <a href="{{ route('admin.reportes.index') }}" class="btn btn-info btn-sm mr-2" style="border-radius:50px;">
                     <i class="fas fa-chart-bar mr-1"></i> Ver Reportes
                 </a>
-                <a href="#" class="btn btn-outline-info btn-sm" style="border-radius:50px;">
-                    <i class="fas fa-download mr-1"></i> Exportar
+                <a href="{{ route('admin.reportes.exportar') }}" class="btn btn-outline-info btn-sm" style="border-radius:50px;">
+                    <i class="fas fa-download mr-1"></i> Exportar PDF
                 </a>
             </div>
         </div>

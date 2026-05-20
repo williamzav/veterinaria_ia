@@ -30,7 +30,7 @@
                     </div>
                     
                     {{-- Contenedor de Sugerencias --}}
-                    <div id="searchResults" class="dropdown-menu w-100 shadow mt-1" style="display: none; position: absolute; z-index: 1000; text-align: left; max-height: 300px; overflow-y: auto;">
+                    <div id="searchResults" style="display:none; position:absolute; z-index:9999; width:100%; background:#fff; border:1px solid #e3e6f0; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,.1); max-height:300px; overflow-y:auto; text-align:left; margin-top:4px;">
                         <!-- Los resultados de búsqueda se inyectarán aquí mediante JS -->
                     </div>
                 </div>
@@ -39,19 +39,14 @@
             {{-- Botones de Acción --}}
             <div class="row justify-content-center mt-4">
                 <div class="col-12">
-                    <button class="btn btn-info btn-icon-split btn-lg mx-2 mb-3 shadow-sm">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-stethoscope"></i>
-                        </span>
+                    <a href="{{ route('consultas.index') }}" class="btn btn-info btn-icon-split btn-lg mx-2 mb-3 shadow-sm">
+                        <span class="icon text-white-50"><i class="fas fa-stethoscope"></i></span>
                         <span class="text">Ver Consultas</span>
-                    </button>
-                    
-                    <button class="btn btn-success btn-icon-split btn-lg mx-2 mb-3 shadow-sm">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
+                    </a>
+                    <a href="{{ route('pacientes.create') }}" class="btn btn-success btn-icon-split btn-lg mx-2 mb-3 shadow-sm">
+                        <span class="icon text-white-50"><i class="fas fa-plus"></i></span>
                         <span class="text">Crear Nuevo Paciente</span>
-                    </button>
+                    </a>
                 </div>
             </div>
 

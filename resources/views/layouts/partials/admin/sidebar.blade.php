@@ -59,19 +59,12 @@
     </li>
 
     {{-- Nav Item - Veterinarios --}}
-    <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVeterinarios"
-            aria-expanded="true" aria-controls="collapseVeterinarios">
+    <li class="nav-item {{ request()->routeIs('admin.veterinarios.*') ? 'active' : '' }}">
+        <a class="nav-link {{ request()->routeIs('admin.veterinarios.*') ? '' : 'collapsed' }}"
+            href="{{ route('admin.veterinarios.index') }}">
             <i class="fas fa-fw fa-user-md"></i>
             <span>Veterinarios</span>
         </a>
-        <div id="collapseVeterinarios" class="collapse" aria-labelledby="headingVeterinarios" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <h6 class="collapse-header">Personal:</h6>
-                <a class="collapse-item" href="#">Ver todos</a>
-                <a class="collapse-item" href="#">Asignar rol</a>
-            </div>
-        </div>
     </li>
 
     {{-- Divider --}}
@@ -84,15 +77,16 @@
 
     {{-- Nav Item - Reportes --}}
     <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link {{ request()->routeIs('admin.reportes.*') ? 'active' : '' }}" href="{{ route('admin.reportes.index') }}">
             <i class="fas fa-fw fa-chart-line"></i>
             <span>Reportes</span>
         </a>
     </li>
 
     {{-- Nav Item - Configuración --}}
-    <li class="nav-item">
-        <a class="nav-link" href="#">
+    <li class="nav-item {{ request()->routeIs('admin.configuracion.*') ? 'active' : '' }}">
+        <a class="nav-link {{ request()->routeIs('admin.configuracion.*') ? '' : '' }}"
+            href="{{ route('admin.configuracion.index') }}">
             <i class="fas fa-fw fa-cogs"></i>
             <span>Configuración</span>
         </a>
