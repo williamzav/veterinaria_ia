@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Mascota;
+use App\Models\Dueno;
+use App\Models\Consulta;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -39,7 +42,24 @@ class AuthController extends Controller
     }
 
     public function home() {
-        return view('modules/dashboard/home');
+        $vet = Auth::user()->veterinario;
+
+        $totalMascotas   = Mascota::count();
+        $totalDuenos     = Dueno::count();
+        $consultasHoy    = $vet
+            ? Consulta::where('veterinario_id', $vet->id)->whereDate('fecha_consulta', today())->count()
+            : 0;
+        $actividadReciente = $vet
+            ? Consulta::with('mascota.dueno')
+                ->where('veterinario_id', $vet->id)
+                ->latest('fecha_consulta')
+                ->take(5)
+                ->get()
+            : collect();
+
+        return view('modules/dashboard/home', compact(
+            'totalMascotas', 'totalDuenos', 'consultasHoy', 'actividadReciente'
+        ));
     }
 
     public function adminHome() {
