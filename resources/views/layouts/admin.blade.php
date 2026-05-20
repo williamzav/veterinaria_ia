@@ -82,6 +82,46 @@
     {{-- SB Admin 2 scripts --}}
     <script src="{{ asset('js/sb-admin-2.min.js') }}"></script>
 
+    {{-- SweetAlert2 --}}
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Alertas globales --}}
+    @if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Corrige los errores',
+            html: '{!! implode("<br>", $errors->all()) !!}',
+            confirmButtonColor: '#4e73df',
+            confirmButtonText: 'Entendido'
+        });
+    </script>
+    @endif
+
+    @if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Listo!',
+            text: '{{ session('success') }}',
+            confirmButtonColor: '#1cc88a',
+            timer: 3000,
+            timerProgressBar: true
+        });
+    </script>
+    @endif
+
+    @if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '{{ session('error') }}',
+            confirmButtonColor: '#e74a3b'
+        });
+    </script>
+    @endif
+
     {{-- Scripts adicionales por vista --}}
     @stack('scripts')
 
